@@ -82,5 +82,10 @@ namespace db_labs1_5
             dataGridView3.DataSource = dataTable3;
             adapter.Dispose();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
