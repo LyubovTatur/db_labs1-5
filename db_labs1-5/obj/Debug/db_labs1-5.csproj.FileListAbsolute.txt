@@ -31,3 +31,8 @@ C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1-5.csproj.Cor
 C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1-5.csproj.CopyComplete
 C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1-5.exe
 C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1-5.pdb
+C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1_5.Form2.resources
+C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1_5.Form3.resources
+C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1_5.Form4.resources
+C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1_5.Form5.resources
+C:\fooooolder\repositories\db_labs1-5\db_labs1-5\obj\Debug\db_labs1_5.Form6.resources
