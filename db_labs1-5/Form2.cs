@@ -13,7 +13,7 @@ namespace db_labs1_5
 {
     public partial class Form2 : Form
     { 
-        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=pizzeria;password=1111");
+        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=obuv;password=1111");
         string query;
         MySqlCommand command;
         MySqlDataAdapter adapter;
@@ -51,7 +51,7 @@ namespace db_labs1_5
         {
             if (textBox1.Text != "")
             {
-                query = $"update menu set is_enable = 0 where title like '{textBox1.Text}%' ";
+                query = $"update    ProductCategory set is_enable = 0 where title like '{textBox1.Text}%' ";
                 command = new MySqlCommand(query, SQLConn);
                 command.Connection.Open();
                 try

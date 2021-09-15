@@ -15,7 +15,7 @@ namespace db_labs1_5
     {
 
         private string photoLink = "";
-        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=pizzeria;password=1111");
+        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=obuv;password=1111");
         string query;
         MySqlCommand command;
         MySqlDataAdapter adapter;
@@ -34,7 +34,7 @@ namespace db_labs1_5
         {
             if (textBox1.Text != "")
             {
-                query = $"delete from order_table where id = {int.Parse(textBox1.Text)} ";
+                query = $"delete from product where title = {int.Parse(textBox1.Text)} ";
                 command = new MySqlCommand(query, SQLConn);
                 command.Connection.Open();
                 try

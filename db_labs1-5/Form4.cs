@@ -13,11 +13,13 @@ namespace db_labs1_5
 {
     public partial class Form4 : Form
     {
-        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=pizzeria;password=1111");
+        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=obuv;password=1111");
         string query;
         MySqlCommand command;
         MySqlDataAdapter adapter;
         DataTable dataTable1;
+        List<int> list_intov = new List<int>();
+
         public Form4()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace db_labs1_5
         private void button2_Click(object sender, EventArgs e)
         {
             int id = 1;
-            query = $"select * from order_table";
+            query = $"select * from sales";
             command = new MySqlCommand(query, SQLConn);
             command.Connection.Open();
 
@@ -55,7 +57,8 @@ namespace db_labs1_5
 
             try
             {
-                query = $"insert into order_table values(\"{id.ToString()}\",\"{ dateTimePicker1.Value.Year }-{dateTimePicker1.Value.Month}-{dateTimePicker1.Value.Day}\",\"{ textBox2.Text}\",\"{ textBox3.Text }\") ";
+                query = $"insert into sales values(\"{id.ToString()}\",\"{textBox1.Text}\",\"{textBox4.Text}\",\"{textBox5.Text}\",\"{ dateTimePicker1.Value.Year }-{dateTimePicker1.Value.Month}-{dateTimePicker1.Value.Day}\",{list_intov[comboBox1.SelectedIndex]}) ";
+                MessageBox.Show(query);
                 command = new MySqlCommand(query, SQLConn);
                 command.ExecuteNonQuery();
                 Close();
@@ -65,25 +68,43 @@ namespace db_labs1_5
                 MessageBox.Show("Что то пошло не так. В числовые поля введите числа.");
             }
             command.Connection.Close();
+            Close();
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (textBox2.Text != "" && textBox3.Text!="")
-            {
-                label4.Visible = false;
-                button2.Enabled = true;
-
-            }
-            else
-            {
-                label4.Visible = true;
-                button2.Enabled = false;
-
-            }
+           
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+            query = "select id, title from product where is_enable = 1";
+            command = new MySqlCommand(query, SQLConn);
+            //adapter = new MySqlDataAdapter(command);
+            //dataTable1 = new DataTable();
+            //adapter.Fill(dataTable1);eofaoiiofai
+            //adapter.Dispose();
+            command.Connection.Open();
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        comboBox1.Items.Add(reader.GetValue(1).ToString());
+                        list_intov.Add(int.Parse(reader.GetValue(0).ToString()));
+                    }
+                }
+            }
+            command.Connection.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

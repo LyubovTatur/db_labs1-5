@@ -15,7 +15,7 @@ namespace db_labs1_5
     public partial class Form3 : Form
     {
         private string photoLink="";
-        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=pizzeria;password=1111");
+        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=obuv;password=1111");
         string query;
         MySqlCommand command;
         MySqlDataAdapter adapter;
@@ -71,7 +71,7 @@ namespace db_labs1_5
         {
             int id = 1;
             bool goInsert = true;
-            query = $"select * from menu";
+            query = $"select * from ProductCategory";
             command = new MySqlCommand(query, SQLConn);
             command.Connection.Open();
             using (MySqlDataReader reader = command.ExecuteReader())
@@ -105,7 +105,8 @@ namespace db_labs1_5
             {
                 try
                 {
-                    query = $"insert into menu values(\"{id.ToString()}\",\"{ textBox1.Text } \",\"{ textBox2.Text}\",\"{ photoLink}\",\"{ textBox3.Text }\",\"{ textBox5.Text}\",1) ";
+                    query = $"insert into ProductCategory values(\"{id.ToString()}\",\"{ textBox1.Text } \",\"{textBox3.Text}\",\"{ textBox2.Text}\",\"{ photoLink}\",1) ";
+                    MessageBox.Show(query);
                     command = new MySqlCommand(query, SQLConn);
                     command.ExecuteNonQuery();
                     Close();
@@ -125,8 +126,7 @@ namespace db_labs1_5
             if (
                 textBox1.Text != "" &&
                 textBox2.Text != "" &&
-                textBox3.Text != "" &&
-                textBox5.Text != "" && 
+                
                 photoLink!=""
                 )
             {

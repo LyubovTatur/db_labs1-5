@@ -14,7 +14,7 @@ namespace db_labs1_5
     public partial class Form6 : Form
     {
 
-        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=pizzeria;password=1111");
+        MySqlConnection SQLConn = new MySqlConnection("server=localhost;user=root;database=obuv;password=1111");
         string query;
         MySqlCommand command;
         MySqlDataAdapter adapter;
@@ -32,7 +32,7 @@ namespace db_labs1_5
         {
 
             int id = 1;
-            query = $"select * from order_list";
+            query = $"select * from productcategory";
             command = new MySqlCommand(query, SQLConn);
             command.Connection.Open();
 
@@ -61,22 +61,22 @@ namespace db_labs1_5
 
             command.Connection.Close();
 
-            query = $"insert into order_list values(\"{id}\",\"{comboBox1.Text}\",\"{menuArr[comboBox2.SelectedIndex]}\",\"{textBox1.Text}\"    )";
+            query = $"insert into product values(\"{id}\",\"{textBox1.Text}\",\"{textBox2.Text}\",\"{textBox3.Text}\",\"{textBox4.Text}\",\"{textBox5.Text}\",1,\"{menuArr[comboBox1.SelectedIndex]}\")";
             MessageBox.Show(query);
             command = new MySqlCommand(query, SQLConn);            
             command.Connection.Open();
             command.ExecuteNonQuery();
             command.Connection.Close();
             comboBox1.Text = "";
-            comboBox2.Text = "";
-            textBox1.Text = "";
+           
             command.Connection.Close();
+            Close();
         }
 
         private void Form6_Load(object sender, EventArgs e)
         {
 
-            query = "select id, title from menu where is_enable = 1";
+            query = "select id, title from ProductCategory where is_enable = 1";
             command = new MySqlCommand(query, SQLConn);
             //adapter = new MySqlDataAdapter(command);
             //dataTable1 = new DataTable();
@@ -89,7 +89,7 @@ namespace db_labs1_5
                 {
                     while (reader.Read())
                     {
-                        comboBox2.Items.Add(reader.GetValue(1).ToString());
+                        comboBox1.Items.Add(reader.GetValue(1).ToString());
                         menuArr.Add(int.Parse(reader.GetValue(0).ToString()));
                     }
                 }
@@ -98,24 +98,29 @@ namespace db_labs1_5
 
 
 
-            query = "select id from order_table ";
-            command = new MySqlCommand(query, SQLConn);
-            //adapter = new MySqlDataAdapter(command);
-            //dataTable1 = new DataTable();
-            //adapter.Fill(dataTable1);
-            //adapter.Dispose();
-            command.Connection.Open();
-            using (MySqlDataReader reader = command.ExecuteReader())
-            {
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        comboBox1.Items.Add(reader.GetValue(0).ToString());
-                    }
-                }
-            }
+            //query = "select title from ProductCategory where is_enable = 1 ";
+            //command = new MySqlCommand(query, SQLConn);
+            ////adapter = new MySqlDataAdapter(command);
+            ////dataTable1 = new DataTable();
+            ////adapter.Fill(dataTable1);
+            ////adapter.Dispose();
+            //command.Connection.Open();
+            //using (MySqlDataReader reader = command.ExecuteReader())
+            //{
+            //    if (reader.HasRows)
+            //    {
+            //        while (reader.Read())
+            //        {
+            //            comboBox1.Items.Add(reader.GetValue(0).ToString());
+            //        }
+            //    }
+            //}
             command.Connection.Close();
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
